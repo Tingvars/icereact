@@ -2,12 +2,13 @@
 import './App.css';
 import React from 'react';
 import DisplaySection from './DisplaySection';
+import GameSentence from './GameSentence';
 
 function App() {
 
     return ( 
     < >
-        < DisplaySection />
+        < GameSentence />
     < />
     )
 }

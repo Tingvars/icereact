@@ -12,7 +12,7 @@ function nextPuzzle() {
     //"displayId" in DisplaySection gets changed somehow.
 }
 
-export default function PuzzleSolvedCorrectly() {
+export default function PuzzleSolvedCorrectly(props) {
     //in the following, I am trying to pass data on.
     const [passingData, setData] = useState("");
 
@@ -21,7 +21,7 @@ export default function PuzzleSolvedCorrectly() {
     }
 
     //then here I am doing the display bit of this screen.
-    const question = getQuestion();
+    const question = props.question;
 
     return ( 
         <div className = "isSentence" >

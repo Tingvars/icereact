@@ -4,7 +4,7 @@ import GameSentence from './GameSentence';
 import PuzzleSolvedCorrectly from './PuzzleSolvedCorrectly';
 import PuzzleWrong from './PuzzleWrong';
 
-let displayId = 2;
+let displayId = 1;
 let displayBit;
 
 export default function DisplaySection() {

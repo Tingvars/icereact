@@ -10,8 +10,8 @@ function MakeBox() {
     return <> {ThisWord} </>
 }
 
-export default function PuzzleWrong() {
-    const question = getQuestion();
+export default function PuzzleWrong(props) {
+    const question = props.question;
 
     return ( 
         <div className = "isSentence" >
@@ -19,7 +19,7 @@ export default function PuzzleWrong() {
             <h3>You wrote:</h3>
             {question.headwords.map(() => <MakeBox />)}
             <div>
-                < button > Back To Puzzle < /button>  
+                < button onClick={() => props.tryAgain()}> Back To Puzzle < /button>  
                 < button > Give Up < /button>  
             </div>
         < /div >

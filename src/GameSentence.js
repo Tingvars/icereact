@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import './App.css';
 import {getQuestion} from './GameWordListIs';
 import PuzzleSolvedCorrectly from './PuzzleSolvedCorrectly';
+import PuzzleWrong from './PuzzleWrong';
 
 function print(obj) {
     return JSON.stringify(obj, null, 2)
 }
 
 function AnswerInput(props) {
-    const [userInput, setUserInput] = useState("");
+    const [userInput, setUserInput] = useState(props.userAnswer);
 
     function handleInput(ev) {
         const input = ev.target.value;
@@ -24,7 +25,7 @@ export default function GameSentence({correctsolveToDisplaySection}) {
     const question = getQuestion();
 
     const [hasAnswered, setHasAnswered] = useState(false);
-    const [userAnswers, setUserAnswers] = useState([]);
+    const [userAnswers, setUserAnswers] = useState(question.fields.map(() => ""));
     const [answerBools, setAnswerBools] = useState([]);
 
     function updateAnswer(index, input) {
@@ -42,12 +43,29 @@ export default function GameSentence({correctsolveToDisplaySection}) {
         //we're probably also passing on the turnCounter.
     }
 
+    function tryAgain() {
+        setHasAnswered(false);
+    }
+
     let allCorrect = answerBools.length && answerBools.every(answer => answer);
+
+    if (hasAnswered) {
+        if (allCorrect) {
+            return <div>
+                < PuzzleSolvedCorrectly question={question} userAnswers={userAnswers} />
+            </div>
+        } else {
+            return <div>
+                < PuzzleWrong question={question} userAnswers={userAnswers} tryAgain={tryAgain} />
+            </div>
+    }
+        }
+
 
     return <div>
         <div className="isSentence">
             <h2>{question.english}</h2>
-            {question.headwords.map((word, index) => <AnswerInput headword={word} updateAnswer={answer => updateAnswer(index, answer)} />)}
+            {question.headwords.map((word, index) => <AnswerInput userAnswer={userAnswers[index]} headword={word} updateAnswer={answer => updateAnswer(index, answer)} />)}
             <div>
                 <button onClick={handleCheck}>Check</button>
             </div>
