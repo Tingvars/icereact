@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import {getQuestion} from './GameWordListIs';
+import PuzzleSolvedCorrectly from './PuzzleSolvedCorrectly';
 
 function print(obj) {
     return JSON.stringify(obj, null, 2)
@@ -19,7 +20,7 @@ function AnswerInput(props) {
     return <input type="text" value={userInput} onChange={handleInput} placeholder={props.headword} />
 }
 
-export default function GameSentence() {
+export default function GameSentence({correctsolveToDisplaySection}) {
     const question = getQuestion();
 
     const [hasAnswered, setHasAnswered] = useState(false);
@@ -36,6 +37,9 @@ export default function GameSentence() {
         
         setAnswerBools(answerBools);
         setHasAnswered(true);
+        //the user's answers, and which answers were right or wrong, get passed on somehow.
+        //"displayId" in DisplaySection gets changed somehow.
+        //we're probably also passing on the turnCounter.
     }
 
     let allCorrect = answerBools.length && answerBools.every(answer => answer);

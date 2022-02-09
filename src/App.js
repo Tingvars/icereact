@@ -1,13 +1,14 @@
 //import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-import GameSentence from './GameSentence';
-import GameButtons from './GameButtons';
+import DisplaySection from './DisplaySection';
 
 function App() {
-    return (<> 
-        <GameSentence />
-        </ >
+
+    return ( 
+    < >
+        < DisplaySection />
+    < />
     )
 }
 
