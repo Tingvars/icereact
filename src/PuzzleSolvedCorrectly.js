@@ -1,35 +1,35 @@
 import './App.css';
 import React, { useState } from 'react';
 import GameSentence from './GameSentence';
-import { getQuestion } from './GameWordListIs';
-
-let turnCounter = 0;
-
-function nextPuzzle() {
-    turnCounter = turnCounter + 1;
-    return turnCounter;
-    //turnCounter gets passed on somehow and then picked up next time we go to PuzzleSolvedCorrectly. 
-    //"displayId" in DisplaySection gets changed somehow.
-}
 
 export default function PuzzleSolvedCorrectly(props) {
-    //in the following, I am trying to pass data on.
-    const [passingData, setData] = useState("");
+    let gameSettings = props.gameSettings;
+    const [hasClicked, setHasClicked] = useState(false);
+    const question = props.question;
+    let questionCounter = gameSettings.questionCounter;
 
-    const correctsolveToDisplaySection = () => {
-        setData("this is passed from Puzzle Solved Correctly, yay");
+    function NextPuzzle() {
+        if (questionCounter < 4) {
+            questionCounter = questionCounter + 1;
+        } else {
+            questionCounter = 0;
+        }
+        setHasClicked(true);
+        gameSettings.questionCounter = questionCounter;
     }
 
-    //then here I am doing the display bit of this screen.
-    const question = props.question;
+    if (hasClicked === true) {
+        return <div>
+            < GameSentence gameSettings={gameSettings}/>
+        </div>
+    }
 
     return ( 
         <div className = "isSentence" >
         < h2 > { question.english } < /h2>   
         < h2 > { question.fields.map((field) => "" + " " + field) } < /h2 >   
         < h2 > Great job! < /h2 >
-        < button onClick = {() => correctsolveToDisplaySection() } > Next Puzzle < /button>  
+        < button onClick = {() => NextPuzzle()} > Next Puzzle < /button>  
         < /div >
     )
-
 }

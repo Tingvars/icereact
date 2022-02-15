@@ -18,6 +18,14 @@ body {
     text-align: center;
 }
 
+.puzzleWrongWordRight {
+    color: green;
+}
+
+.puzzleWrongWordWrong {
+    color: red;
+}
+
 .App-logo {
     height: 40vmin;
     pointer-events: none;
