@@ -3,6 +3,7 @@ import './App.css';
 import {getQuestion} from './GameWordListIs';
 import PuzzleSolvedCorrectly from './PuzzleSolvedCorrectly';
 import PuzzleWrong from './PuzzleWrong';
+import GameOver from './GameOver';
 
 //function print(obj) {
 //    return JSON.stringify(obj, null, 2)
@@ -21,11 +22,13 @@ function AnswerInput(props) {
 }
 
 export default function GameSentence(props) {
-    let gameSettings = props.gameSettings;
-    let questionCounter = props.gameSettings.questionCounter;
+    const {gameSettings} = props;
+    let {questionCounter, turnCounter, gameTurns} = gameSettings;
 
     const question = getQuestion(questionCounter);
 
+    const [hasClickedNext, setHasClickedNext] = useState(false);
+    const [isGameOver, setIsGameOver] = useState(false);
     const [hasAnswered, setHasAnswered] = useState(false);
     const [userAnswers, setUserAnswers] = useState(question.fields.map(() => ""));
     const [answerBools, setAnswerBools] = useState([]);
@@ -46,21 +49,39 @@ export default function GameSentence(props) {
         setHasAnswered(false);
     }
 
+    function nextPuzzle(isCorrect) {
+        if (isCorrect) {
+            gameSettings.rightAnswers = gameSettings.rightAnswers + 1;
+        }
+        if (turnCounter < gameTurns) {
+            turnCounter = turnCounter + 1;
+            gameSettings.turnCounter = turnCounter;
+            if (questionCounter < 4) {
+                questionCounter = questionCounter + 1;
+            } else {
+                questionCounter = 0;
+            }
+            setHasClickedNext(true);
+            gameSettings.questionCounter = questionCounter;
+    } else {
+        setIsGameOver(true);
+      }      
+}
 
     let allCorrect = answerBools.length && answerBools.every(answer => answer);
 
+    if (isGameOver) {
+        return < GameOver gameSettings={gameSettings}/>
+    }
+
     if (hasAnswered) {
         if (allCorrect) {
-            return <div>
-                < PuzzleSolvedCorrectly gameSettings={gameSettings} question={question} userAnswers={userAnswers} />
-            </div>
+            return < PuzzleSolvedCorrectly gameSettings={gameSettings} question={question} userAnswers={userAnswers} hasClickedNext={hasClickedNext} nextPuzzle={nextPuzzle} />
+            
         } else {
-            return <div>
-                < PuzzleWrong gameSettings={gameSettings} userAnswers={userAnswers} answerBools={answerBools} tryAgain={tryAgain} />
-            </div>
-    }
+            return < PuzzleWrong gameSettings={gameSettings} userAnswers={userAnswers} answerBools={answerBools} tryAgain={tryAgain} hasClickedNext={hasClickedNext} nextPuzzle={nextPuzzle} />
         }
-
+    }
 
     return <div>
         <div className="isSentence">
