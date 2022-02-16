@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react';
-import GameSentence from './GameSentence';
 
 function MakeBox(props) {
     const answerBool = props.answerBool;
@@ -10,13 +9,7 @@ function MakeBox(props) {
 
 }
 export default function PuzzleWrong(props) {
-    const {nextPuzzle, gameSettings, hasClickedNext, userAnswers, answerBools} = props;
-
-    if (hasClickedNext === true) {
-        return <div>
-            < GameSentence gameSettings={gameSettings}/>
-        </div>
-    }
+    const {nextPuzzle, userAnswers, answerBools} = props;
 
     return ( 
         <div className = "isSentence" >
@@ -25,7 +18,7 @@ export default function PuzzleWrong(props) {
             {userAnswers.map((userAnswer, index) => <MakeBox answerWord={userAnswer} answerBool={answerBools[index]}/>)}
             <div>
                 < button onClick={() => props.tryAgain()}> Back To Puzzle < /button>  
-                < button onClick = {() => nextPuzzle()} > Give Up < /button>
+                < button onClick = {() => nextPuzzle(false)} > Give Up < /button>
             </div>
         < /div >
     )

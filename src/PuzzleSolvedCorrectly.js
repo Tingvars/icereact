@@ -1,15 +1,8 @@
 import './App.css';
 import React from 'react';
-import GameSentence from './GameSentence';
 
 export default function PuzzleSolvedCorrectly(props) {
-    const {nextPuzzle, question, gameSettings, hasClickedNext} = props;
-
-    if (hasClickedNext) {
-        return <div>
-            < GameSentence gameSettings={gameSettings}/>
-        </div>
-    }
+    const {nextPuzzle, question} = props;
     
     return ( 
         <div className = "isSentence" >

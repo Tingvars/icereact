@@ -26,11 +26,11 @@ export default function GameSentence(props) {
     let {questionCounter, turnCounter, gameTurns} = gameSettings;
 
     const question = getQuestion(questionCounter);
+    const defaultAnswers = question.fields.map(() => "");
 
-    const [hasClickedNext, setHasClickedNext] = useState(false);
     const [isGameOver, setIsGameOver] = useState(false);
     const [hasAnswered, setHasAnswered] = useState(false);
-    const [userAnswers, setUserAnswers] = useState(question.fields.map(() => ""));
+    const [userAnswers, setUserAnswers] = useState(defaultAnswers);
     const [answerBools, setAnswerBools] = useState([]);
 
     function updateAnswer(index, input) {
@@ -61,7 +61,8 @@ export default function GameSentence(props) {
             } else {
                 questionCounter = 0;
             }
-            setHasClickedNext(true);
+            setHasAnswered(false);
+            setUserAnswers(defaultAnswers);
             gameSettings.questionCounter = questionCounter;
     } else {
         setIsGameOver(true);
@@ -76,10 +77,10 @@ export default function GameSentence(props) {
 
     if (hasAnswered) {
         if (allCorrect) {
-            return < PuzzleSolvedCorrectly gameSettings={gameSettings} question={question} userAnswers={userAnswers} hasClickedNext={hasClickedNext} nextPuzzle={nextPuzzle} />
+            return < PuzzleSolvedCorrectly question={question} nextPuzzle={nextPuzzle} />
             
         } else {
-            return < PuzzleWrong gameSettings={gameSettings} userAnswers={userAnswers} answerBools={answerBools} tryAgain={tryAgain} hasClickedNext={hasClickedNext} nextPuzzle={nextPuzzle} />
+            return < PuzzleWrong userAnswers={userAnswers} answerBools={answerBools} tryAgain={tryAgain} nextPuzzle={nextPuzzle} />
         }
     }
 
