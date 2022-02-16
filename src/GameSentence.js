@@ -46,6 +46,7 @@ export default function GameSentence(props) {
         setHasAnswered(false);
     }
 
+
     let allCorrect = answerBools.length && answerBools.every(answer => answer);
 
     if (hasAnswered) {

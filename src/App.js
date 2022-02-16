@@ -4,6 +4,7 @@ import React from 'react';
 import DisplaySection from './DisplaySection';
 import GameSentence from './GameSentence';
 import StartNewGame from './StartNewGame';
+import GameOver from './GameOver';
 
 function App() {
 
