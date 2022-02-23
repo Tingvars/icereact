@@ -1,3 +1,10 @@
+import React, { useState } from 'react';
+import './App.css';
+import {getQuestion} from './GameWordListIs';
+import PuzzleSolvedCorrectly from './PuzzleSolvedCorrectly';
+import PuzzleWrong from './PuzzleWrong';
+import GameOver from './GameOver';
+
 const questions = [
     { id: 1, fields: ["Hann", "borðar", "fisk"], english: "1 He eats fish", headwords: ["Hann", "borða", "fiskur"]},
     { id: 2, fields: ["Ég", "sé", "sólina"], english: "2 I see the sun", headwords: ["Ég", "sjá", "sólin"]},
@@ -7,7 +14,14 @@ const questions = [
     
 ];
 
-export function getQuestion(questionCounter) {
+//export function getQuestion(questionCounter) {
 
-    return questions[questionCounter];
+//    return questions[questionCounter];
+//}
+
+export function generateQuestion(obj) {
+    /// TODO: implement question logic, have a static input for one type of question. Look at Next.js
 }
+
+
+

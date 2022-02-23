@@ -4,6 +4,7 @@ import {getQuestion} from './GameWordListIs';
 import PuzzleSolvedCorrectly from './PuzzleSolvedCorrectly';
 import PuzzleWrong from './PuzzleWrong';
 import GameOver from './GameOver';
+import getSentences from './library';
 
 //function print(obj) {
 //    return JSON.stringify(obj, null, 2)
@@ -24,8 +25,15 @@ function AnswerInput(props) {
 export default function GameSentence(props) {
     const {gameSettings} = props;
     let {questionCounter, turnCounter, gameTurns} = gameSettings;
+    let needNewQuestion = true;
+    let question;
+    console.log("needNewQuestion is: " + needNewQuestion);
 
-    const question = getQuestion(questionCounter);
+    if (needNewQuestion) {
+    question = getSentences();
+    console.log(question);
+    needNewQuestion = false;
+}
     const defaultAnswers = question.fields.map(() => "");
 
     const [isGameOver, setIsGameOver] = useState(false);
