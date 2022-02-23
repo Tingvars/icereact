@@ -4,7 +4,7 @@ import {getQuestion} from './GameWordListIs';
 import PuzzleSolvedCorrectly from './PuzzleSolvedCorrectly';
 import PuzzleWrong from './PuzzleWrong';
 import GameOver from './GameOver';
-import getSentences from './library';
+import getSentence from './library';
 
 //function print(obj) {
 //    return JSON.stringify(obj, null, 2)
@@ -25,21 +25,16 @@ function AnswerInput(props) {
 export default function GameSentence(props) {
     const {gameSettings} = props;
     let {questionCounter, turnCounter, gameTurns} = gameSettings;
-    let needNewQuestion = true;
-    let question;
-    console.log("needNewQuestion is: " + needNewQuestion);
-
-    if (needNewQuestion) {
-    question = getSentences();
-    console.log(question);
-    needNewQuestion = false;
-}
-    const defaultAnswers = question.fields.map(() => "");
-
+    
+    const [sentence, setSentence] = useState(getSentence());
     const [isGameOver, setIsGameOver] = useState(false);
     const [hasAnswered, setHasAnswered] = useState(false);
-    const [userAnswers, setUserAnswers] = useState(defaultAnswers);
+    
     const [answerBools, setAnswerBools] = useState([]);
+
+    const defaultAnswers = sentence.fields.map(() => "");
+
+    const [userAnswers, setUserAnswers] = useState(defaultAnswers);
 
     function updateAnswer(index, input) {
         userAnswers[index] = input
@@ -47,7 +42,7 @@ export default function GameSentence(props) {
     }
 
     function handleCheck() {
-        const answerBools = question.fields.map((field, index) => field === userAnswers[index])
+        const answerBools = sentence.fields.map((field, index) => field === userAnswers[index])
         
         setAnswerBools(answerBools);
         setHasAnswered(true);
@@ -72,6 +67,7 @@ export default function GameSentence(props) {
             setHasAnswered(false);
             setUserAnswers(defaultAnswers);
             gameSettings.questionCounter = questionCounter;
+            setSentence(getSentence());
     } else {
         setIsGameOver(true);
       }      
@@ -85,7 +81,7 @@ export default function GameSentence(props) {
 
     if (hasAnswered) {
         if (allCorrect) {
-            return < PuzzleSolvedCorrectly question={question} nextPuzzle={nextPuzzle} />
+            return < PuzzleSolvedCorrectly question={sentence} nextPuzzle={nextPuzzle} />
             
         } else {
             return < PuzzleWrong userAnswers={userAnswers} answerBools={answerBools} tryAgain={tryAgain} nextPuzzle={nextPuzzle} />
@@ -94,8 +90,8 @@ export default function GameSentence(props) {
 
     return <div>
         <div className="isSentence">
-            <h2>{question.english}</h2>
-            {question.headwords.map((word, index) => <AnswerInput userAnswer={userAnswers[index]} headword={word} updateAnswer={answer => updateAnswer(index, answer)} />)}
+            <h2>{sentence.english}</h2>
+            {sentence.headwords.map((word, index) => <AnswerInput userAnswer={userAnswers[index]} headword={word} updateAnswer={answer => updateAnswer(index, answer)} />)}
             <div>
                 <button onClick={handleCheck}>Check</button>
             </div>

@@ -137,39 +137,36 @@ forms:[
   },
 ]
 
-export default function getSentences() {
-
-function getRandomInt(list) {
-  return Math.floor(Math.random() * list.length);
+function getRandomFromList(list) {
+  return list[Math.floor(Math.random() * list.length)]
 }
 
-let randomSubjectInt = getRandomInt(subjects);
-let pickedSubject = subjects[randomSubjectInt];
-let subjectGrammar = pickedSubject.grammar;
+export default function getSentence(randomFunc = getRandomFromList) {
+  let pickedSubject = randomFunc(subjects);
+  let subjectGrammar = pickedSubject.grammar;
 
-let randomVerbInt = getRandomInt(verbs);
-let pickedVerb = verbs[randomVerbInt];
-let verbGrammar = pickedVerb.grammar;
+  let pickedVerb = randomFunc(verbs);
+  let verbGrammar = pickedVerb.grammar;
 
-let randomObjInt = getRandomInt(objects);
-let pickedObj = objects[randomObjInt];
-let randomPersDefInt = getRandomInt(pickedObj.forms);
+  let pickedObj = randomFunc(objects);
+  let pickedForm = randomFunc(pickedObj.forms);
 
-let isSubject = pickedSubject.is;
-let enSubject = pickedSubject.en;
-let isVerb = pickedVerb.forms[subjectGrammar][0];
-let enVerb = pickedVerb.forms[subjectGrammar][1];
-let isObject = pickedObj.forms[randomPersDefInt][verbGrammar][0];
-let enObject = pickedObj.forms[randomPersDefInt][verbGrammar][1];
-let isSubjHeadword = pickedSubject.is;
-let isVerbHeadword = pickedVerb.verbis;
-let isObjHeadword = pickedObj.objis;
-let enSentence = enSubject + " " + enVerb + " " + enObject;
+  let isSubject = pickedSubject.is;
+  let enSubject = pickedSubject.en;
+  let isVerb = pickedVerb.forms[subjectGrammar][0];
+  let enVerb = pickedVerb.forms[subjectGrammar][1];
+  let isObject = pickedForm[verbGrammar][0];
+  let enObject = pickedForm[verbGrammar][1];
+  let isSubjHeadword = pickedSubject.is;
+  let isVerbHeadword = pickedVerb.verbis;
+  let isObjHeadword = pickedObj.objis;
+  let enSentence = enSubject + " " + enVerb + " " + enObject;
 
-const sentences = [{ fields: [isSubject, isVerb, isObject], english: enSentence, headwords: [isSubjHeadword, isVerbHeadword, isObjHeadword]},
-];
-
-return sentences[0];
+  return { 
+    fields: [isSubject, isVerb, isObject], 
+    english: enSentence, 
+    headwords: [isSubjHeadword, isVerbHeadword, isObjHeadword]
+  }
 }
 
 
