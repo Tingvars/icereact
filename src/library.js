@@ -200,6 +200,7 @@ forms:[
 [["hundurinn", "dog"], ["hundinn", "dog"], ["hundinum", "dog"], ["hundsins", "dog"]],  
 [["hundarnir", "dogs"], ["hundana", "dogs"], ["hundunum", "dogs"], ["hundanna", "dogs"]], 
 ],
+article: "a",
 },
 {objis:"tölva",
 objen:"computer",
@@ -303,7 +304,7 @@ article: "a",
 ]
 
 const adjectives = [
-  {adjis: "gömul",
+  {adjis: "gamall",
   adjen: "old",
   forms:[  
     [//def
@@ -419,7 +420,7 @@ forms:[
 ],
 article: "a",
 },
-{adjis: "góð",
+{adjis: "góður",
   adjen: "good",
   forms:[  
     [//def
@@ -487,7 +488,9 @@ function getRandomIndex(list) {
 
 export default function getSentence(config, randomFunc = getRandomIndex) {
 
-  let useAdj = false;
+  const {useAdj} = config;
+
+  //let useAdj = false;
 
   // if (useAdj) {
   //   getAdjectiveSentence(config, randomFunc)

@@ -26,7 +26,7 @@ export default function GameSentence(props) {
     const {gameSettings} = props;
     let {questionCounter, turnCounter, gameTurns} = gameSettings;
     
-    const [sentence, setSentence] = useState(getSentence());
+    const [sentence, setSentence] = useState(getSentence(gameSettings));
     const [isGameOver, setIsGameOver] = useState(false);
     const [hasAnswered, setHasAnswered] = useState(false);
     

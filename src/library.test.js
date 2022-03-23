@@ -6,7 +6,7 @@ function getFirstFromList(list) {
 
 test('getSentence generates a question without adjectives', () => {
     const config = {
-        useAdjectives: false
+        useAdj: false
     };
     const sentence = getSentence(config, getFirstFromList)
 
@@ -27,22 +27,22 @@ test('getSentence generates a question without adjectives', () => {
 
   test('getSentence generates a question with adjectives', () => {
     const config = {
-        useAdjectives: true
+        useAdj: true
     };
     const sentence = getSentence(config, getFirstFromList)
 
     expect(sentence).toEqual({
-        "english": "I meet a big dog",
+        "english": "I meet an old dog",
         "fields": [
             "Ég",
             "hitti",
-            "stóran",
+            "gamlan",
             "hund",
         ],
         "headwords": [
             "Ég",
             "hitta",
-            "stór",
+            "gamall",
             "hundur",
         ],
     });
