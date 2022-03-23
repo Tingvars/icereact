@@ -233,6 +233,7 @@ forms:[
 [["boltinn", "ball"], ["boltann", "ball"], ["boltanum", "ball"], ["boltans", "ball"]],  
 [["boltarnir", "balls"], ["boltana", "balls"], ["boltunum", "balls"], ["boltanna", "balls"]], 
 ],
+article: "a",
 },
 {objis:"bíll",
 objen:"car",
@@ -486,7 +487,7 @@ function getRandomIndex(list) {
 
 //let config = { useAdjectives: true }
 
-export default function getSentence(config, randomFunc = getRandomIndex) {
+function getSentence(config, randomFunc = getRandomIndex) {
 
   const {useAdj} = config;
 
@@ -579,3 +580,5 @@ export default function getSentence(config, randomFunc = getRandomIndex) {
   }
 }
 }
+
+export {getSentence, objects, adjectives}
