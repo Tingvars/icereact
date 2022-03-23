@@ -67,7 +67,9 @@ export default function GameSentence(props) {
             setHasAnswered(false);
             setUserAnswers(defaultAnswers);
             gameSettings.questionCounter = questionCounter;
-            setSentence(getSentence());
+            setSentence(getSentence({
+                useAdjective: gameSettings.useAdj
+            }));
     } else {
         setIsGameOver(true);
       }      

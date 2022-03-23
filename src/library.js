@@ -195,163 +195,115 @@ const objects = [
 objen:"dog",
 gender:0,
 forms:[
-[["hundur", "a dog"], ["hund", "a dog"], ["hundi", "a dog"], ["hunds", "a dog"]], 
+[["hundur", "dog"], ["hund", "dog"], ["hundi", "dog"], ["hunds", "dog"]], 
 [["hundar", "dogs"], ["hunda", "dogs"], ["hundum", "dogs"], ["hunda", "dogs"]],  
-[["hundurinn", "the dog"], ["hundinn", "the dog"], ["hundinum", "the dog"], ["hundsins", "the dog"]],  
-[["hundarnir", "the dogs"], ["hundana", "the dogs"], ["hundunum", "the dogs"], ["hundanna", "the dogs"]], 
+[["hundurinn", "dog"], ["hundinn", "dog"], ["hundinum", "dog"], ["hundsins", "dog"]],  
+[["hundarnir", "dogs"], ["hundana", "dogs"], ["hundunum", "dogs"], ["hundanna", "dogs"]], 
 ],
 },
 {objis:"tölva",
 objen:"computer",
 gender:1,
 forms:[
-[["tölva", "a computer"], ["tölvu", "a computer"], ["tölvu", "a computer"], ["tölvu", "a computer"]], 
+[["tölva", "computer"], ["tölvu", "computer"], ["tölvu", "computer"], ["tölvu", "computer"]], 
 [["tölvur", "computers"], ["tölvur", "computers"], ["tölvum", "computers"], ["tölva", "computers"]],  
-[["tölvan", "the computer"], ["tölvuna", "the computer"], ["tölvunni", "the computer"], ["tölvunnar", "the computer"]],  
-[["tölvurnar", "the computers"], ["tölvurnar", "the computers"], ["tölvunum", "the computers"], ["tölvanna", "the computers"]], 
+[["tölvan", "computer"], ["tölvuna", "computer"], ["tölvunni", "computer"], ["tölvunnar", "computer"]],  
+[["tölvurnar", "computers"], ["tölvurnar", "computers"], ["tölvunum", "computers"], ["tölvanna", "computers"]], 
 ],
+article: "a",
 },
 {objis:"ljós",
 objen:"light",
 gender:2,
 forms:[
-[["ljós", "a light"], ["ljós", "a light"], ["ljósi", "a light"], ["ljóss", "a light"]], 
+[["ljós", "light"], ["ljós", "light"], ["ljósi", "light"], ["ljóss", "light"]], 
 [["ljós", "lights"], ["ljós", "lights"], ["ljósum", "lights"], ["ljósa", "lights"]],  
-[["ljósið", "the light"], ["ljósið", "the light"], ["ljósinu", "the light"], ["ljóssins", "the light"]],  
-[["ljósin", "the lights"], ["ljósin", "the lights"], ["ljósunum", "the lights"], ["ljósanna", "the lights"]], 
+[["ljósið", "light"], ["ljósið", "light"], ["ljósinu", "light"], ["ljóssins", "light"]],  
+[["ljósin", "lights"], ["ljósin", "lights"], ["ljósunum", "lights"], ["ljósanna", "lights"]], 
 ],
+article: "a",
 },
 {objis:"bolti",
 objen:"ball",
 gender:0,
 forms:[
-[["bolti", "a ball"], ["bolta", "a ball"], ["bolta", "a ball"], ["bolta", "a ball"]], 
+[["bolti", "ball"], ["bolta", "ball"], ["bolta", "ball"], ["bolta", "ball"]], 
 [["boltar", "balls"], ["bolta", "balls"], ["boltum", "balls"], ["bolta", "balls"]],  
-[["boltinn", "the ball"], ["boltann", "the ball"], ["boltanum", "the ball"], ["boltans", "the ball"]],  
-[["boltarnir", "the balls"], ["boltana", "the balls"], ["boltunum", "the balls"], ["boltanna", "the balls"]], 
+[["boltinn", "ball"], ["boltann", "ball"], ["boltanum", "ball"], ["boltans", "ball"]],  
+[["boltarnir", "balls"], ["boltana", "balls"], ["boltunum", "balls"], ["boltanna", "balls"]], 
 ],
 },
 {objis:"bíll",
 objen:"car",
 gender:0,
 forms:[
-[["bíll", "a car"], ["bíl", "a car"], ["bíl", "a car"], ["bíls", "a car"]], 
+[["bíll", "car"], ["bíl", "car"], ["bíl", "car"], ["bíls", "car"]], 
 [["bílar", "cars"], ["bíla", "cars"], ["bílum", "cars"], ["bíla", "cars"]],  
-[["bíllinn", "the car"], ["bílinn", "the car"], ["bílnum", "the car"], ["bílsins", "the car"]],  
-[["bílarnir", "the cars"], ["bílana", "the cars"], ["bílunum", "the cars"], ["bílanna", "the cars"]], 
+[["bíllinn", "car"], ["bílinn", "car"], ["bílnum", "car"], ["bílsins", "car"]],  
+[["bílarnir", "cars"], ["bílana", "cars"], ["bílunum", "cars"], ["bílanna", "cars"]], 
 ],
+article: "a",
 },
 {objis:"mynd",
 objen:"picture",
 gender:1,
 forms:[
-[["mynd", "a picture"], ["mynd", "a picture"], ["mynd", "a picture"], ["myndar", "a picture"]], 
+[["mynd", "picture"], ["mynd", "picture"], ["mynd", "picture"], ["myndar", "picture"]], 
 [["myndir", "pictures"], ["myndir", "pictures"], ["myndum", "pictures"], ["mynda", "pictures"]],  
-[["myndin", "the picture"], ["myndina", "the picture"], ["myndinni", "the picture"], ["myndarinnar", "the picture"]],  
-[["myndirnar", "the pictures"], ["myndirnar", "the pictures"], ["myndunum", "the pictures"], ["myndanna", "the pictures"]], 
+[["myndin", "picture"], ["myndina", "picture"], ["myndinni", "picture"], ["myndarinnar", "picture"]],  
+[["myndirnar", "pictures"], ["myndirnar", "pictures"], ["myndunum", "pictures"], ["myndanna", "pictures"]], 
 ],
+article: "a",
 },
 {objis:"epli",
 objen:"apple",
 gender:2,
 forms:[
-[["epli", "an apple"], ["epli", "an apple"], ["epli", "an apple"], ["eplis", "an apple"]], 
+[["epli", "apple"], ["epli", "apple"], ["epli", "apple"], ["eplis", "apple"]], 
 [["epli", "apples"], ["epli", "apples"], ["eplum", "apples"], ["epla", "apples"]],  
-[["eplið", "the apple"], ["eplið", "the apple"], ["eplinu", "the apple"], ["eplisins", "the apple"]],  
-[["eplin", "the apples"], ["eplin", "the apples"], ["eplunum", "the apples"], ["eplanna", "the apples"]], 
+[["eplið", "apple"], ["eplið", "apple"], ["eplinu", "apple"], ["eplisins", "apple"]],  
+[["eplin", "apples"], ["eplin", "apples"], ["eplunum", "apples"], ["eplanna", "apples"]], 
 ],
+article: "an",
 },
 {objis:"hús",
 objen:"house",
 gender:2,
 forms:[
-[["hús", "a house"], ["hús", "a house"], ["húsi", "a house"], ["húss", "a house"]], 
+[["hús", "house"], ["hús", "house"], ["húsi", "house"], ["húss", "house"]], 
 [["hús", "houses"], ["hús", "houses"], ["húsum", "houses"], ["húsa", "houses"]],  
-[["húsið", "the house"], ["húsið", "the house"], ["húsinu", "the house"], ["hússins", "the house"]],  
-[["húsin", "the houses"], ["húsin", "the houses"], ["húsunum", "the houses"], ["húsanna", "the houses"]], 
+[["húsið", "house"], ["húsið", "house"], ["húsinu", "house"], ["hússins", "house"]],  
+[["húsin", "houses"], ["húsin", "houses"], ["húsunum", "houses"], ["húsanna", "houses"]], 
 ],
+article: "a",
 },
   {objis:"hestur",
   objen:"horse",
   gender:0,
   forms:[
-  [["hestur", "a horse"], ["hest", "a horse"], ["hesti", "a horse"], ["hests", "a horse"]], 
+  [["hestur", "horse"], ["hest", "horse"], ["hesti", "horse"], ["hests", "horse"]], 
   [["hestar", "horses"], ["hesta", "horses"], ["hestum", "horses"], ["hesta", "horses"]],  
-  [["hesturinn", "the horse"], ["hestinn", "the horse"], ["hestinum", "the horse"], ["hestsins", "the horse"]],  
-  [["hestarnir", "the horses"], ["hestana", "the horses"], ["hestunum", "the horses"], ["hestanna", "the horses"]], 
+  [["hesturinn", "horse"], ["hestinn", "horse"], ["hestinum", "horse"], ["hestsins", "horse"]],  
+  [["hestarnir", "horses"], ["hestana", "horses"], ["hestunum", "horses"], ["hestanna", "horses"]], 
 ],
+article: "a",
 },
 {objis:"borð",
   objen:"table",
-  gender:2,
+  gender: 2,
+  articles: ["a", "the"],
   forms:[
-    [["borð", "a table"], ["borð", "a table"], ["borði", "a table"], ["borðs", "a table"]], 
+    [["borð", "table"], ["borð", "table"], ["borði", "table"], ["borðs", "table"]], 
     [["borð", "tables"], ["borð", "tables"], ["borðum", "tables"], ["borða", "tables"]],  
-    [["borðið", "the table"], ["borðið", "the table"], ["borðinu", "the table"], ["borðsins", "the table"]],  
-    [["borðin", "the tables"], ["borðin", "the tables"], ["borðunum", "the tables"], ["borðanna", "the tables"]], 
+    [["borðið", "table"], ["borðið", "table"], ["borðinu", "table"], ["borðsins", "table"]],  
+    [["borðin", "tables"], ["borðin", "tables"], ["borðunum", "tables"], ["borðanna", "tables"]], 
   ],
+  article: "a",
   },
 ]
 
 const adjectives = [
-  {adjis: "stór",
-  adjen: "big",
-  forms:[  
-    [//def
-    [//masc
-      [//sing
-        "stóri", "stóra", "stóra", "stóra"
-      ],
-      [//plur
-        "stóru", "stóru", "stóru", "stóru"
-      ]
-    ],
-    [//fem
-      [//sing
-        "stóra", "stóru", "stóru", "stóru"
-      ],
-      [//plur
-        "stóru", "stóru", "stóru", "stóru"
-      ]
-    ],
-    [//neut
-      [//sing
-        "stóra", "stóra", "stóra", "stóra"
-      ],
-      [//plur
-        "stóru", "stóru", "stóru", "stóru"
-      ]
-    ]
-  ],
-  [//indef
-    [//masc
-      [//sing
-        "stór", "stóran", "stórum", "stórs"
-      ],
-      [//plur
-        "stórir", "stóra", "stórum", "stórra"
-      ]
-    ],
-    [//fem
-      [//sing
-        "stór", "stóra", "stórri", "stórrar"
-      ],
-      [//plur
-        "stórar", "stórar", "stórum", "stórra"
-      ]
-    ],
-    [//neut
-      [//sing
-        "stórt", "stórt", "stóru", "stórs"
-      ],
-      [//plur
-        "stór", "stór", "stórum", "stórra"
-      ]
-    ]
-  ]
-]
-},
-{adjis: "gömul",
+  {adjis: "gömul",
   adjen: "old",
   forms:[  
     [//def
@@ -406,7 +358,66 @@ const adjectives = [
       ]
     ]
   ]
+],
+article: "an",
+},
+{adjis: "stór",
+adjen: "big",
+forms:[  
+  [//def
+  [//masc
+    [//sing
+      "stóri", "stóra", "stóra", "stóra"
+    ],
+    [//plur
+      "stóru", "stóru", "stóru", "stóru"
+    ]
+  ],
+  [//fem
+    [//sing
+      "stóra", "stóru", "stóru", "stóru"
+    ],
+    [//plur
+      "stóru", "stóru", "stóru", "stóru"
+    ]
+  ],
+  [//neut
+    [//sing
+      "stóra", "stóra", "stóra", "stóra"
+    ],
+    [//plur
+      "stóru", "stóru", "stóru", "stóru"
+    ]
+  ]
+],
+[//indef
+  [//masc
+    [//sing
+      "stór", "stóran", "stórum", "stórs"
+    ],
+    [//plur
+      "stórir", "stóra", "stórum", "stórra"
+    ]
+  ],
+  [//fem
+    [//sing
+      "stór", "stóra", "stórri", "stórrar"
+    ],
+    [//plur
+      "stórar", "stórar", "stórum", "stórra"
+    ]
+  ],
+  [//neut
+    [//sing
+      "stórt", "stórt", "stóru", "stórs"
+    ],
+    [//plur
+      "stór", "stór", "stórum", "stórra"
+    ]
+  ]
 ]
+],
+article: "a",
 },
 {adjis: "góð",
   adjen: "good",
@@ -463,70 +474,92 @@ const adjectives = [
       ]
     ]
   ]
-]
+],
+article: "a",
 }
 ]
 
-function getRandomFromList(list) {
-  return list[Math.floor(Math.random() * list.length)]
+function getRandomIndex(list) {
+  return Math.floor(Math.random() * list.length)
 }
 
-export default function getSentence(randomFunc = getRandomFromList) {
-  let useAdj = true;
-  let pickedSubject = randomFunc(subjects);
+//let config = { useAdjectives: true }
+
+export default function getSentence(config, randomFunc = getRandomIndex) {
+
+  let useAdj = false;
+
+  // if (useAdj) {
+  //   getAdjectiveSentence(config, randomFunc)
+  // }
+
+  let pickedSubject = subjects[randomFunc(subjects)];
   let subjectGrammar = pickedSubject.grammar;
 
-  let pickedVerb = randomFunc(verbs);
+  let pickedVerb = verbs[randomFunc(verbs)];
   let verbGrammar = pickedVerb.grammar;
 
-  let pickedObj = randomFunc(objects);
-  let pickedForm = randomFunc(pickedObj.forms);
+  let pickedObj = objects[randomFunc(objects)];
+
+  let pickedFormIndex = randomFunc(pickedObj.forms);
 
   let isSubject = pickedSubject.is;
   let enSubject = pickedSubject.en;
   let isVerb = pickedVerb.forms[subjectGrammar][0];
   let enVerb = pickedVerb.forms[subjectGrammar][1];
   let objectGender = pickedObj.gender;
-  let pickedAdjective = randomFunc(adjectives);
+  let pickedAdjective = adjectives[randomFunc(adjectives)];
   let enAdjective = pickedAdjective.adjen;
   let adjDefOrIndef;
-  if (pickedForm < 2) {
-    adjDefOrIndef = 0;
-  } else {
+  if (pickedFormIndex < 2) {
     adjDefOrIndef = 1;
+  } else {
+    adjDefOrIndef = 0;
   }
   let adjSingOrPlur;
-  if (pickedForm = 0) {
+  if (pickedFormIndex === 0) {
     adjSingOrPlur = 0;
-  } else if (pickedForm = 1) {
+  } else if (pickedFormIndex === 1) {
     adjSingOrPlur = 1;
-  } else if (pickedForm = 2) {
+  } else if (pickedFormIndex === 2) {
     adjSingOrPlur = 0;
-  } else if (pickedForm = 3) {
+  } else if (pickedFormIndex === 3) {
     adjSingOrPlur = 1;
   }
+
   let isAdjective = pickedAdjective.forms[adjDefOrIndef][objectGender][adjSingOrPlur][verbGrammar];
   
     //gender (nos 0,1,2) from object objectGender, 
     //case (nos 0,1,2,3) from verb verbGrammar, 
     //def&indef (0(sing),1(plur),2(sing),3(plur))from object pickedForm
   
-  let isObject = pickedObj.forms[pickedForm][verbGrammar][0];
-  let enObject = pickedObj.forms[pickedForm][verbGrammar][1];
+  let isObject = pickedObj.forms[pickedFormIndex][verbGrammar][0];
+  let enObject = pickedObj.forms[pickedFormIndex][verbGrammar][1];
   let isSubjHeadword = pickedSubject.is;
   let isVerbHeadword = pickedVerb.verbis;
   let isAdjectiveHeadword = pickedAdjective.adjis;
   let isObjHeadword = pickedObj.objis;
   let enSentence;
   if (useAdj) {
-    if (adjDefOrIndef = 1) {
+    if (pickedFormIndex === 0) {
+    enSentence = enSubject + " " + enVerb + " " + pickedAdjective.article + " " + enAdjective + " " + enObject;
+  } else if (pickedFormIndex === 1 ) {
     enSentence = enSubject + " " + enVerb + " " + enAdjective + " " + enObject;
-  } else if (adjDefOrIndef = 0) {
-    let newEnObject = enObject.slice(4);
-    enSentence = enSubject + " " + enVerb + " " + "the " + enAdjective + " " + newEnObject;
+  } else if (pickedFormIndex === 2 ) {
+    enSentence = enSubject + " " + enVerb + " " + "the " + enAdjective + " " + enObject;
+  } else if (pickedFormIndex === 3 ) {
+    enSentence = enSubject + " " + enVerb + " " + "the " + enAdjective + " " + enObject;
   }
   } else {
-    enSentence = enSubject + " " + enVerb + " " + enObject;
+    if (pickedFormIndex === 0) {
+      enSentence = enSubject + " " + enVerb + " " + pickedObj.article + " " + enObject;
+    } else if (pickedFormIndex === 1 ) {
+      enSentence = enSubject + " " + enVerb + " " + enObject;
+    } else if (pickedFormIndex === 2 ) {
+      enSentence = enSubject + " " + enVerb + " the " + enObject;
+    } else if (pickedFormIndex === 3 ) {
+      enSentence = enSubject + " " + enVerb + " the " + enObject;
+    } 
   }
 
   if (useAdj) {
