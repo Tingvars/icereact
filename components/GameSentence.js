@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import './App.css';
 import {getQuestion} from './GameWordListIs';
 import PuzzleSolvedCorrectly from './PuzzleSolvedCorrectly';
 import PuzzleWrong from './PuzzleWrong';
 import GameOver from './GameOver';
-import {getSentence} from './library';
+import {getSentence} from '../lib/library';
 
 //function print(obj) {
 //    return JSON.stringify(obj, null, 2)

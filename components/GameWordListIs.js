@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.css';
 import {getQuestion} from './GameWordListIs';
 import PuzzleSolvedCorrectly from './PuzzleSolvedCorrectly';
 import PuzzleWrong from './PuzzleWrong';
