@@ -568,6 +568,7 @@ function getSentence(config, randomFunc = getRandomIndex) {
 
   if (useAdj) {
     return { 
+      pickedObj,
       fields: [isSubject, isVerb, isAdjective, isObject], 
       english: enSentence, 
       headwords: [isSubjHeadword, isVerbHeadword, isAdjectiveHeadword, isObjHeadword]

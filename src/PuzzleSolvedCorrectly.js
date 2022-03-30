@@ -5,11 +5,11 @@ export default function PuzzleSolvedCorrectly(props) {
     const {nextPuzzle, question} = props;
     
     return ( 
-        <div className = "isSentence" >
-            <h2> { question.english } </h2>   
-            <h2> { question.fields.join(" ") } </h2>   
-            <h2> Great job! </h2>
-            <button onClick = {() => nextPuzzle(true)} > Next Puzzle </button>  
+        <div className = "text-center" >
+            <div className = "text-xl font-bold"> { question.english } </div>   
+            <div className = "text-lg"> { question.fields.join(" ") } </div>   
+            <div className = "text-lg"> Great job! </div>
+            <button className="btn" onClick = {() => nextPuzzle(true)} > Next Puzzle </button>  
         </div>
     )
 }

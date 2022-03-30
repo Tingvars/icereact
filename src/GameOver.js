@@ -32,14 +32,14 @@ export default function StartAgain(props) {
     }
 
     return ( 
-        <div className = "isSentence" >
-            <h1>Game Over</h1>
-            < h2 > You got { gameSettings.rightAnswers }/{ gameSettings.gameTurns } right! < /h2 >
+        <div className="text-center">
+            <div className = "text-2xl font-bold">Game Over</div>
+            <div> You got { gameSettings.rightAnswers }/{ gameSettings.gameTurns } right! </div>
             <div>
-                < button onClick={() => StartSameGame()}> Play Again < /button> 
-                < button onClick={() => ToGameSettings()}> Change Game Settings < /button> 
+                <button className="btn mr-2" onClick={() => StartSameGame()}> Play Again </button> 
+                <button className="btn" onClick={() => ToGameSettings()}> Change Game Settings </button> 
             </div>
-        < /div >
+        </div>
     )
 
     }

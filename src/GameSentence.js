@@ -19,7 +19,7 @@ function AnswerInput(props) {
         props.updateAnswer(input);
     }
 
-    return <input type="text" value={userInput} onChange={handleInput} placeholder={props.headword} />
+    return <input className="mx-1 rounded pl-1" type="text" value={userInput} onChange={handleInput} placeholder={props.headword} />
 }
 
 export default function GameSentence(props) {
@@ -91,11 +91,11 @@ export default function GameSentence(props) {
     }
 
     return <div>
-        <div className="isSentence">
-            <h2>{sentence.english}</h2>
-            {sentence.headwords.map((word, index) => <AnswerInput userAnswer={userAnswers[index]} headword={word} updateAnswer={answer => updateAnswer(index, answer)} />)}
+        <div className="text-center">
+            <div className="text-2xl font-bold py-3">{sentence.english}</div>
+            {sentence.headwords.map((word, index) => <AnswerInput className="mx-2" userAnswer={userAnswers[index]} headword={word} updateAnswer={answer => updateAnswer(index, answer)} />)}
             <div>
-                <button onClick={handleCheck}>Check</button>
+                <button className="btn" onClick={handleCheck}>Check</button>
             </div>
             {hasAnswered && <pre>{allCorrect ? "correct" : "not correct"}</pre>}
         </div>

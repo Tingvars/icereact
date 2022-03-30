@@ -24,10 +24,10 @@ setHasClicked(true);
     }
 
     return ( 
-        <div className = "isSentence" >
-            <h2> Welcome to the game! </h2>
-            <h3>You'll enter some settings on this page and then click Start.</h3>
-            <h4>Tick this box to select adjectives:</h4>
+        <div className="text-center">
+            <div className = "text-xl font-bold"> Welcome to the game! </div>
+            <div className="text-lg">You'll enter some settings on this page and then click Start.</div>
+            <div>Tick this box to select adjectives:</div>
             <input type="checkbox" name="adjectives" onChange={() => {
                 if (useAdjectives) {
                     setUseAdjectives(false);
@@ -36,7 +36,7 @@ setHasClicked(true);
                 }
           }}
             ></input>
-            <h4>Please select the number of turns you want to play:</h4>
+            <div>Please select the number of turns you want to play:</div>
             <input
           type="number"
           value={turnCount}
@@ -45,7 +45,7 @@ setHasClicked(true);
           }}
         />  
             <div>
-                < button onClick={() => StartGame()}> Start < /button>  
+                < button className="btn" onClick={() => StartGame()}> Start < /button>  
             </div>
         < /div >
     )
