@@ -92,7 +92,7 @@ export default function GameSentence(props) {
     return <div>
         <div className="text-center">
             <div className="text-2xl font-bold py-3">{sentence.english}</div>
-            {sentence.headwords.map((word, index) => <AnswerInput className="mx-2" userAnswer={userAnswers[index]} headword={word} updateAnswer={answer => updateAnswer(index, answer)} />)}
+            {sentence.headwords.map((word, index) => <AnswerInput key={index} className="mx-2" userAnswer={userAnswers[index]} headword={word} updateAnswer={answer => updateAnswer(index, answer)} />)}
             <div>
                 <button className="btn" onClick={handleCheck}>Check</button>
             </div>

@@ -14,7 +14,7 @@ export default function PuzzleWrong(props) {
         <div className = "text-center">
             <div className = "text-xl font-bold"> Not quite right </div>
             <h3>You wrote:</h3>
-            {userAnswers.map((userAnswer, index) => <MakeBox answerWord={userAnswer} answerBool={answerBools[index]}/>)}
+            {userAnswers.map((userAnswer, index) => <MakeBox key={index} answerWord={userAnswer} answerBool={answerBools[index]}/>)}
             <div>
                 < button className="btn mr-2" onClick={() => props.tryAgain()}> Back To Puzzle < /button>  
                 < button className="btn" onClick = {() => nextPuzzle(false)} > Give Up < /button>
