@@ -11,7 +11,11 @@ export default function StartNewGame() {
     const [useAdjectives, setUseAdjectives] = useState(false);
 
 function StartGame() {
+    if (turnCount === "") {
+        alert("Invalid turn count!");
+    } else {
 setHasClicked(true);
+}
 }
 
     if (hasClicked === true) {
@@ -35,7 +39,7 @@ setHasClicked(true);
                 }
           }}
             ></input>
-            <div>Please select the number of turns you want to play:</div>
+            <div>Please enter the number of turns you want to play:</div>
             <input
           type="number"
           value={turnCount}
@@ -46,7 +50,7 @@ setHasClicked(true);
             <div>
                 < button className="btn" onClick={() => StartGame()}> Start < /button>  
             </div>
-        < /div >
+        </div>
     )
 
 }

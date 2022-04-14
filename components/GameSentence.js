@@ -18,7 +18,7 @@ function AnswerInput(props) {
         props.updateAnswer(input);
     }
 
-    return <input className="mx-1 rounded pl-1" type="text" value={userInput} onChange={handleInput} placeholder={props.headword} />
+    return <input className="text-center my-1 mx-1 rounded pl-1" type="text" value={userInput} onChange={handleInput} placeholder={props.headword} />
 }
 
 export default function GameSentence(props) {
@@ -85,7 +85,7 @@ export default function GameSentence(props) {
             return < PuzzleSolvedCorrectly question={sentence} nextPuzzle={nextPuzzle} />
             
         } else {
-            return < PuzzleWrong userAnswers={userAnswers} answerBools={answerBools} tryAgain={tryAgain} nextPuzzle={nextPuzzle} />
+            return < PuzzleWrong question={sentence} userAnswers={userAnswers} answerBools={answerBools} tryAgain={tryAgain} nextPuzzle={nextPuzzle} />
         }
     }
 
