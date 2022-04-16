@@ -2,7 +2,8 @@ import React from 'react';
 
 export default function GaveUpShowAnswer(props) {
     const {wrongAnswerList, nextPuzzle, question} = props;
-    console.log(wrongAnswerList);
+    let duplicatesRemoved = [...new Set(wrongAnswerList)];
+    console.log(duplicatesRemoved);
 
     return ( 
         <div className = "text-center" >

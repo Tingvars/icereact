@@ -10,7 +10,6 @@ function MakeBox(props) {
 export default function PuzzleWrong(props) {
     const {nextPuzzle, question, userAnswers, answerBools, wrongAnswerList} = props;
     const [hasGivenUp, setHasGivenUp] = useState(false);
-    const wrongAnsArray = [];
 
     //This makes an array of correct answers and bools from user answers, 
     //and picks out the correct answer if the bool is false
@@ -18,17 +17,13 @@ export default function PuzzleWrong(props) {
    combinedWordBool.forEach(word => {
    if (combinedWordBool.indexOf(word) < question.fields.length) {
         if (!combinedWordBool[(combinedWordBool.indexOf(word) + question.fields.length)]) {
-            wrongAnsArray.push(word);
+            wrongAnswerList.push(word);
         }
     };
     });
 
-    let duplicatesRemoved = [...new Set(wrongAnsArray)];
-    wrongAnswerList.length = 0;
-    wrongAnswerList.push(duplicatesRemoved);
-
     if (hasGivenUp) {
-        return <GaveUpShowAnswer wrongAnswerList={wrongAnswerList[0]} question={question} nextPuzzle={nextPuzzle} />
+        return <GaveUpShowAnswer wrongAnswerList={wrongAnswerList} question={question} nextPuzzle={nextPuzzle} />
     } else {
 
     return ( 
