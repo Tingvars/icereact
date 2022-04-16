@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import GameSentence from './GameSentence';
 
 const gameSettings = {
-     turnCounter: 1, questionCounter: 0, gameTurns: 0, rightAnswers: 0, useAdj: false
+     turnCounter: 1, questionCounter: 0, gameTurns: 0, rightAnswers: 0, wrongAnswerList: [], useAdj: false
     };
 
 export default function StartNewGame() {

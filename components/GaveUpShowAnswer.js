@@ -1,7 +1,8 @@
 import React from 'react';
 
 export default function GaveUpShowAnswer(props) {
-    const {nextPuzzle, question} = props;
+    const {wrongAnswerList, nextPuzzle, question} = props;
+    console.log(wrongAnswerList);
 
     return ( 
         <div className = "text-center" >
