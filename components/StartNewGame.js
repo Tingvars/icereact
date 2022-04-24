@@ -2,13 +2,26 @@ import React, { useState } from 'react';
 import GameSentence from './GameSentence';
 
 const gameSettings = {
-     turnCounter: 1, questionCounter: 0, gameTurns: 0, rightAnswers: 0, wrongAnswerList: [], useAdj: false
+     turnCounter: 1, questionCounter: 0, gameTurns: 0, rightAnswers: 0, useAdj: false
     };
 
 export default function StartNewGame() {
     const [hasClicked, setHasClicked] = useState(false);
     const [turnCount, setTurnCount] = useState(1);
     const [useAdjectives, setUseAdjectives] = useState(false);
+    if (typeof window !== 'undefined') {
+        localStorage.setItem("wrongAnswerList", []);
+      }
+
+      try {
+        const wrongAnswersTest = localStorage.getItem('wrongAnswerList');
+      }
+      catch(err) {
+        if (typeof window !== 'undefined') {
+            localStorage.setItem("wrongAnswerList", "");
+          }
+      }
+      
 
 function StartGame() {
     if (turnCount === "") {

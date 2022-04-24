@@ -23,7 +23,7 @@ function AnswerInput(props) {
 
 export default function GameSentence(props) {
     const {gameSettings} = props;
-    let {questionCounter, turnCounter, gameTurns, wrongAnswerList} = gameSettings;
+    let {questionCounter, turnCounter, gameTurns} = gameSettings;
     
     const [sentence, setSentence] = useState(getSentence(gameSettings));
     const [isGameOver, setIsGameOver] = useState(false);
@@ -85,7 +85,7 @@ export default function GameSentence(props) {
             return < PuzzleSolvedCorrectly question={sentence} nextPuzzle={nextPuzzle} />
             
         } else {
-            return < PuzzleWrong wrongAnswerList={wrongAnswerList} question={sentence} userAnswers={userAnswers} answerBools={answerBools} tryAgain={tryAgain} nextPuzzle={nextPuzzle} />
+            return < PuzzleWrong question={sentence} userAnswers={userAnswers} answerBools={answerBools} tryAgain={tryAgain} nextPuzzle={nextPuzzle} />
         }
     }
 

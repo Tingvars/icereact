@@ -8,8 +8,13 @@ function MakeBox(props) {
 }
 
 export default function PuzzleWrong(props) {
-    const {nextPuzzle, question, userAnswers, answerBools, wrongAnswerList} = props;
+    let wrongAnswerList;
+    const {nextPuzzle, question, userAnswers, answerBools} = props;
     const [hasGivenUp, setHasGivenUp] = useState(false);
+    if (typeof window !== 'undefined') {
+        wrongAnswerList = [localStorage.getItem('wrongAnswerList')];
+      }
+    
 
     //This makes an array of correct answers and bools from user answers, 
     //and picks out the correct answer if the bool is false
@@ -22,8 +27,10 @@ export default function PuzzleWrong(props) {
     };
     });
 
+    localStorage.setItem("wrongAnswerList", wrongAnswerList);
+
     if (hasGivenUp) {
-        return <GaveUpShowAnswer wrongAnswerList={wrongAnswerList} question={question} nextPuzzle={nextPuzzle} />
+        return <GaveUpShowAnswer question={question} nextPuzzle={nextPuzzle} />
     } else {
 
     return ( 
