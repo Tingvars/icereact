@@ -12,20 +12,15 @@ export default function PuzzleWrong(props) {
     const {nextPuzzle, question, userAnswers, answerBools} = props;
     const [hasGivenUp, setHasGivenUp] = useState(false);
     if (typeof window !== 'undefined') {
-        wrongAnswerList = [localStorage.getItem('wrongAnswerList')];
-      }
-    
+        wrongAnswerList = [localStorage.getItem('wrongAnswerList')];}
+    console.log("wrongAnswerList currently: " + wrongAnswerList);
 
-    //This makes an array of correct answers and bools from user answers, 
-    //and picks out the correct answer if the bool is false
-   const combinedWordBool = question.fields.concat(answerBools);
-   combinedWordBool.forEach(word => {
-   if (combinedWordBool.indexOf(word) < question.fields.length) {
-        if (!combinedWordBool[(combinedWordBool.indexOf(word) + question.fields.length)]) {
-            wrongAnswerList.push(word);
-        }
-    };
-    });
+    userAnswers.map((word, index) => ({
+        word,
+        correct: answerBools[index]
+          })).filter(word => word.correct === false).map(word => word.word).map(word => wrongAnswerList.push(word));
+                 //1. filtering out only false words  2. making the list only words not objects  3. adding words to wrongAnswerList
+                 //preceding can be taken out once data is arriving as an object array
 
     localStorage.setItem("wrongAnswerList", wrongAnswerList);
 

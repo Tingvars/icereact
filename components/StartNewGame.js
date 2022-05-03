@@ -9,19 +9,17 @@ export default function StartNewGame() {
     const [hasClicked, setHasClicked] = useState(false);
     const [turnCount, setTurnCount] = useState(1);
     const [useAdjectives, setUseAdjectives] = useState(false);
-    if (typeof window !== 'undefined') {
-        localStorage.setItem("wrongAnswerList", []);
-      }
 
-      try {
-        const wrongAnswersTest = localStorage.getItem('wrongAnswerList');
-      }
-      catch(err) {
-        if (typeof window !== 'undefined') {
-            localStorage.setItem("wrongAnswerList", "");
-          }
-      }
-      
+            if (typeof window !== 'undefined') {
+                if (localStorage.getItem('wrongAnswerList') === null)  {
+                localStorage.setItem("wrongAnswerList", "");
+              }
+            }
+                 if (typeof window !== 'undefined') {
+                     if (localStorage.getItem('numPuzzlesToday') === null)  {
+                     localStorage.setItem("numPuzzlesToday", 0);
+                   }
+                 }
 
 function StartGame() {
     if (turnCount === "") {
@@ -34,6 +32,7 @@ setHasClicked(true);
     if (hasClicked === true) {
         gameSettings.gameTurns = turnCount;
         gameSettings.useAdj = useAdjectives;
+        gameSettings.rightAnswers = 0;
         return <div>
             < GameSentence gameSettings={gameSettings}/>
         </div>
