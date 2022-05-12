@@ -3,6 +3,8 @@ import PuzzleSolvedCorrectly from './PuzzleSolvedCorrectly';
 import PuzzleWrong from './PuzzleWrong';
 import GameOver from './GameOver';
 import {getSentence} from '../lib/library';
+import { useSelector, useDispatch } from 'react-redux'
+import { gameOver, nextPuzzle, checkAnswer, tryAgain } from '../gameSlice'
 
 function AnswerInput(props) {
     const [userInput, setUserInput] = useState(props.userAnswer);
@@ -16,13 +18,17 @@ function AnswerInput(props) {
     return <input className="text-center my-1 mx-1 rounded pl-1" type="text" value={userInput} onChange={handleInput} placeholder={props.headword} />
 }
 
-export default function GameSentence(props) {
-    const {gameSettings} = props;
+export default function GameSentence() {
+    const gameSettings = useSelector(state => state.game.settings);
+    const isGameOver = useSelector(state => state.game.isGameOver);
+    const hasAnswered = useSelector(state => state.game.hasAnswered);
     let {questionCounter, turnCounter, gameTurns} = gameSettings;
     
-    const [sentence, setSentence] = useState(getSentence(gameSettings));
-    const [isGameOver, setIsGameOver] = useState(false);
-    const [hasAnswered, setHasAnswered] = useState(false);
+    const sentence = useSelector(state => state.game.sentence);
+    //const [isGameOver, setIsGameOver] = useState(false);
+    //const [_, setHasAnswered] = useState(false);
+
+    const dispatch = useDispatch();
     
     const [answerBools, setAnswerBools] = useState([]);
 
@@ -37,39 +43,23 @@ export default function GameSentence(props) {
 
     function handleCheck() {
         const answerBools = sentence.fields.map((field, index) => field === userAnswers[index])
-        
         setAnswerBools(answerBools);
-        setHasAnswered(true);
+
+        // TODO: send the user's answers as a payload?
+        dispatch(checkAnswer({userAnswers}));
     }
 
-    function tryAgain() {
-        setHasAnswered(false);
+    function handleTryAgain() {
+        dispatch(tryAgain())
     }
 
-    function nextPuzzle(isCorrect) {
-        if (isCorrect) {
-            gameSettings.rightAnswers = gameSettings.rightAnswers + 1;
-        }
-        if (turnCounter < gameTurns) {
-            turnCounter = turnCounter + 1;
-            gameSettings.turnCounter = turnCounter;
-            if (questionCounter < 4) {
-                questionCounter = questionCounter + 1;
-            } else {
-                questionCounter = 0;
-            }
-            setHasAnswered(false);
-            setUserAnswers(defaultAnswers);
-            gameSettings.questionCounter = questionCounter;
-            setSentence(getSentence({
-                useAdjective: gameSettings.useAdj
-            }));
-    } else {
-        setIsGameOver(true);
-      }      
-}
+    function handleNextPuzzle(isCorrect) {
+        dispatch(nextPuzzle({isCorrect}));
+    }
 
     let allCorrect = answerBools.length && answerBools.every(answer => answer);
+
+    // useSelector(state => state.game.currentQuestion.isCorrect)
 
     if (isGameOver) {
         return < GameOver gameSettings={gameSettings}/>
@@ -77,10 +67,10 @@ export default function GameSentence(props) {
 
     if (hasAnswered) {
         if (allCorrect) {
-            return < PuzzleSolvedCorrectly question={sentence} nextPuzzle={nextPuzzle} />
+            return < PuzzleSolvedCorrectly question={sentence} nextPuzzle={handleNextPuzzle} />
             
         } else {
-            return < PuzzleWrong question={sentence} userAnswers={userAnswers} answerBools={answerBools} tryAgain={tryAgain} nextPuzzle={nextPuzzle} />
+            return < PuzzleWrong question={sentence} userAnswers={userAnswers} answerBools={answerBools} tryAgain={handleTryAgain} nextPuzzle={handleNextPuzzle} />
         }
     }
 

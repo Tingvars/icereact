@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GameSentence from './GameSentence';
 import StartNewGame from './StartNewGame';
 
@@ -13,12 +13,9 @@ export default function StartAgain(props) {
     const [hasClickedStartSameGame, setHasClickedStartSameGame] = useState(false);
     const [hasClickedToGameSettings, setHasClickedToGameSettings] = useState(false);
 
-    if (typeof window !== 'undefined') {
-        if (!hasAddedRightAnswersToTotal) {
+    useEffect(() => {
         localStorage.setItem("numPuzzlesToday", parseInt([localStorage.getItem('numPuzzlesToday')]) + gameSettings.rightAnswers);
-        sethasAddedRightAnswersToTotal(true);
-        } 
-    }
+    }, [])
 
     function StartSameGame() {
         setHasClickedStartSameGame(true);

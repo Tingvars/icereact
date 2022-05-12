@@ -1,40 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GameSentence from './GameSentence';
 
-const gameSettings = {
-     turnCounter: 1, questionCounter: 0, gameTurns: 0, rightAnswers: 0, useAdj: false
-    };
+import { useSelector, useDispatch } from 'react-redux'
+import { decrement, increment } from '../counterSlice'
+import { startGame } from '../gameSlice'
+
+// In an another file
+
+// export const hasClicked = useSelector(state => state.game.hasClicked);
+
+// import { hasClicked } from "./selectors"
 
 export default function StartNewGame() {
-    const [hasClicked, setHasClicked] = useState(false);
     const [turnCount, setTurnCount] = useState(1);
     const [useAdjectives, setUseAdjectives] = useState(false);
 
-            if (typeof window !== 'undefined') {
-                if (localStorage.getItem('wrongAnswerList') === null)  {
-                localStorage.setItem("wrongAnswerList", "");
-              }
-            }
-                 if (typeof window !== 'undefined') {
-                     if (localStorage.getItem('numPuzzlesToday') === null)  {
-                     localStorage.setItem("numPuzzlesToday", 0);
-                   }
-                 }
+    const count = useSelector(state => state.counter.value)
+    const hasClicked = useSelector(state => state.game.hasClicked)
+    const gameSettings = useSelector(state => state.game.settings)
+  
+    const dispatch = useDispatch()
 
-function StartGame() {
-    if (turnCount === "") {
-        alert("Invalid turn count!");
-    } else {
-setHasClicked(true);
-}
-}
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            if (localStorage.getItem('wrongAnswerList') === null)  {
+            localStorage.setItem("wrongAnswerList", "");
+          }
+        }
+             if (typeof window !== 'undefined') {
+                 if (localStorage.getItem('numPuzzlesToday') === null)  {
+                 localStorage.setItem("numPuzzlesToday", 0);
+               }
+             }
+    }, [])
+            
+    function handleStart() {
+        if (isNaN(turnCount)) {
+            alert("Invalid turn count!");
+        } else {
+            dispatch(startGame({turnCount, useAdjectives}));
+        }
+    }
 
-    if (hasClicked === true) {
-        gameSettings.gameTurns = turnCount;
-        gameSettings.useAdj = useAdjectives;
-        gameSettings.rightAnswers = 0;
+    if (hasClicked) {
         return <div>
-            < GameSentence gameSettings={gameSettings}/>
+            < GameSentence />
         </div>
     }
 
@@ -56,12 +66,15 @@ setHasClicked(true);
           type="number"
           value={turnCount}
           onChange={(event) => {
-            setTurnCount(event.target.value);
+            setTurnCount(parseInt(event.target.value));
           }}
         />  
             <div>
-                < button className="btn" onClick={() => StartGame()}> Start < /button>  
+                < button className="btn" onClick={handleStart}> Start < /button>  
             </div>
+
+            <div>
+      </div>
         </div>
     )
 
