@@ -5,8 +5,12 @@ export const gameSlice = createSlice({
   name: 'game',
   initialState: {
     hasClicked: false,
+    hasClickedRight: false,
     hasAnswered: false,
     sentence: {},
+    userAnswers: {},
+    userAnswerBools: {},
+    userAnswerIsCorrect: false,
     settings: {
       turnCounter: 1,
       questionCounter: 0,
@@ -39,20 +43,28 @@ export const gameSlice = createSlice({
       state.isGameOver = true;
     },
     checkAnswer: (state, action) => {
-      // action.payload.userAnswers
+      state.userAnswers = action.payload.userAnswers;
 
-      // TODO: Compare the userAnswers with the sentence to figure out if correct
-      // state.currentQuestion.isCorrect = true/false
+      state.userAnswerBools = state.userAnswers.map((answer, index) => {
+        if (answer === state.sentence.fields[index]) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+
+      state.userAnswerIsCorrect = state.userAnswerBools.every(Boolean);
 
       state.hasAnswered = true;
     },
     tryAgain: state => {
       state.hasAnswered = false;
     },
-    nextPuzzle: (state, action) => {
-      if (action.payload.isCorrect) {
+    nextPuzzle: state => {
+      console.log("starting nextPuzzle from gameslice");
+      if (state.userAnswerIsCorrect) {
         state.settings.rightAnswers += 1;
-      }
+      } 
 
       // -----
 
@@ -67,8 +79,7 @@ export const gameSlice = createSlice({
 
         // setHasAnswered(false);
         state.hasAnswered = false;
-
-        // setUserAnswers(defaultAnswers);
+        state.userAnswers = sentence.fields.map(() => "");
         // gameSettings.questionCounter = questionCounter;
         
         // setSentence(getSentence({
@@ -82,11 +93,17 @@ export const gameSlice = createSlice({
         // TODO: Set game over if needed 
 
     }
+    state.hasClickedRight = true;
+    console.log("hasClickedRight is now " + state.hasClickedRight);
+  },
+
+  unClick: state => {
+    state.hasClickedRight = false;
   }
 }
 })
 
 // Action creators are generated for each case reducer function
-export const { startGame, gameOver, checkAnswer, tryAgain, nextPuzzle } = gameSlice.actions
+export const { startGame, gameOver, checkAnswer, tryAgain, nextPuzzle, unClick } = gameSlice.actions
 
 export default gameSlice.reducer

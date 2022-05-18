@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import GaveUpShowAnswer from './GaveUpShowAnswer';
+import { useSelector, useDispatch } from 'react-redux';
+import { gameOver, nextPuzzle, checkAnswer, tryAgain } from '../gameSlice'
 
 function MakeBox(props) {
     const answerBool = props.answerBool;
@@ -7,20 +9,25 @@ function MakeBox(props) {
     return <span className={answerBool ? "text-green-600" : "text-red-600"}>{ answerWord + " "}</span>
 }
 
-export default function PuzzleWrong(props) {
+export default function PuzzleWrong() {
     let wrongAnswerList;
-    const {nextPuzzle, question, userAnswers, answerBools} = props;
+    const userAnswers = useSelector(state => state.game.userAnswers);
+    const userAnswerBools = useSelector(state => state.game.userAnswerBools);
     const [hasGivenUp, setHasGivenUp] = useState(false);
+    const dispatch = useDispatch();
+
+    function handleTryAgain() {
+        dispatch(tryAgain())
+    }
+    
     if (typeof window !== 'undefined') {
         wrongAnswerList = [localStorage.getItem('wrongAnswerList')];}
     console.log("wrongAnswerList currently: " + wrongAnswerList);
 
     userAnswers.map((word, index) => ({
         word,
-        correct: answerBools[index]
+        correct: userAnswerBools[index]
           })).filter(word => word.correct === false).map(word => word.word).map(word => wrongAnswerList.push(word));
-                 //1. filtering out only false words  2. making the list only words not objects  3. adding words to wrongAnswerList
-                 //preceding can be taken out once data is arriving as an object array
 
     localStorage.setItem("wrongAnswerList", wrongAnswerList);
 
@@ -32,11 +39,13 @@ export default function PuzzleWrong(props) {
         <div className = "text-center">
             <div className = "text-xl font-bold"> Not quite right </div>
             <h3>You wrote:</h3> 
-            {userAnswers.map((userAnswer, index) => <MakeBox key={index} answerWord={userAnswer} answerBool={answerBools[index]}/>)}
+            {userAnswers.map((userAnswer, index) => <MakeBox key={index} answerWord={userAnswer} userAnswer={userAnswerBools[index]}/>)}
             <div>
-                < button className="btn mr-2" onClick={() => props.tryAgain()}> Back To Puzzle </button>  
+                {/* TODO Back To Puzzle button works, but entering new answers gets an error. */}
+                < button className="btn mr-2" onClick={() => handleTryAgain()}> Back To Puzzle </button>  
                 < button className="btn" onClick = {() => setHasGivenUp(true)}> Give Up </button>
             </div>
+            
         </div>
     )
 }

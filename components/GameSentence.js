@@ -4,7 +4,7 @@ import PuzzleWrong from './PuzzleWrong';
 import GameOver from './GameOver';
 import {getSentence} from '../lib/library';
 import { useSelector, useDispatch } from 'react-redux'
-import { gameOver, nextPuzzle, checkAnswer, tryAgain } from '../gameSlice'
+import { gameOver, nextPuzzle, checkAnswer, tryAgain, unClick } from '../gameSlice'
 
 function AnswerInput(props) {
     const [userInput, setUserInput] = useState(props.userAnswer);
@@ -22,15 +22,13 @@ export default function GameSentence() {
     const gameSettings = useSelector(state => state.game.settings);
     const isGameOver = useSelector(state => state.game.isGameOver);
     const hasAnswered = useSelector(state => state.game.hasAnswered);
-    let {questionCounter, turnCounter, gameTurns} = gameSettings;
-    
+    const allCorrect = useSelector(state => state.game.userAnswerIsCorrect);
     const sentence = useSelector(state => state.game.sentence);
-    //const [isGameOver, setIsGameOver] = useState(false);
-    //const [_, setHasAnswered] = useState(false);
+    const hasClicked = useSelector(state => state.game.hasClicked);
 
     const dispatch = useDispatch();
     
-    const [answerBools, setAnswerBools] = useState([]);
+    //const [answerBools, setAnswerBools] = useState([]);
 
     const defaultAnswers = sentence.fields.map(() => "");
 
@@ -42,10 +40,8 @@ export default function GameSentence() {
     }
 
     function handleCheck() {
-        const answerBools = sentence.fields.map((field, index) => field === userAnswers[index])
-        setAnswerBools(answerBools);
-
-        // TODO: send the user's answers as a payload?
+        //hasClicked = false;
+        dispatch(unClick());
         dispatch(checkAnswer({userAnswers}));
     }
 
@@ -53,24 +49,15 @@ export default function GameSentence() {
         dispatch(tryAgain())
     }
 
-    function handleNextPuzzle(isCorrect) {
-        dispatch(nextPuzzle({isCorrect}));
-    }
-
-    let allCorrect = answerBools.length && answerBools.every(answer => answer);
-
-    // useSelector(state => state.game.currentQuestion.isCorrect)
-
     if (isGameOver) {
         return < GameOver gameSettings={gameSettings}/>
     }
 
     if (hasAnswered) {
         if (allCorrect) {
-            return < PuzzleSolvedCorrectly question={sentence} nextPuzzle={handleNextPuzzle} />
-            
+            return < PuzzleSolvedCorrectly />
         } else {
-            return < PuzzleWrong question={sentence} userAnswers={userAnswers} answerBools={answerBools} tryAgain={handleTryAgain} nextPuzzle={handleNextPuzzle} />
+            return < PuzzleWrong />
         }
     }
 

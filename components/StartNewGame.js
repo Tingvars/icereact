@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import GameSentence from './GameSentence';
-
 import { useSelector, useDispatch } from 'react-redux'
 import { decrement, increment } from '../counterSlice'
 import { startGame } from '../gameSlice'
