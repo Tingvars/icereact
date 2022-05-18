@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import GaveUpShowAnswer from './GaveUpShowAnswer';
 import { useSelector, useDispatch } from 'react-redux';
-import { gameOver, nextPuzzle, checkAnswer, tryAgain } from '../gameSlice'
+import { gameOver, nextPuzzle, checkAnswer, tryAgain, useUserAnswerBools } from '../gameSlice'
 
 function MakeBox(props) {
     const answerBool = props.answerBool;
@@ -12,7 +12,7 @@ function MakeBox(props) {
 export default function PuzzleWrong() {
     let wrongAnswerList;
     const userAnswers = useSelector(state => state.game.userAnswers);
-    const userAnswerBools = useSelector(state => state.game.userAnswerBools);
+    const userAnswerBools = useUserAnswerBools();
     const [hasGivenUp, setHasGivenUp] = useState(false);
     const dispatch = useDispatch();
 
@@ -32,7 +32,7 @@ export default function PuzzleWrong() {
     localStorage.setItem("wrongAnswerList", wrongAnswerList);
 
     if (hasGivenUp) {
-        return <GaveUpShowAnswer question={question} nextPuzzle={nextPuzzle} />
+        return <GaveUpShowAnswer />
     } else {
 
     return ( 

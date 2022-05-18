@@ -25,6 +25,7 @@ export default function StartAgain(props) {
         setHasClickedToGameSettings(true);
     }
 
+    //TODO Thora look at this
     if (hasClickedStartSameGame === true) {
         gameSettings.turnCounter = 1;
         gameSettings.questionCounter = 0;

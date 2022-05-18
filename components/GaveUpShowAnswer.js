@@ -1,13 +1,20 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { nextPuzzle } from '../gameSlice'
 
-export default function GaveUpShowAnswer(props) {
-    const {nextPuzzle, question} = props;
+export default function GaveUpShowAnswer() {
+    const sentence = useSelector(state => state.game.sentence);
+    const dispatch = useDispatch();
+
+    function handleNextPuzzle() {
+        dispatch(nextPuzzle());
+    }
 
     return ( 
         <div className = "text-center" >
-            <div className = "text-xl font-bold"> { question.english } </div>   
-            <div className = "text-lg">Should be:<br></br> { question.fields.join(" ") } </div>   
-            <button className="btn" onClick = {() => nextPuzzle(false)} > Next Puzzle </button>  
+            <div className = "text-xl font-bold"> { sentence.english } </div>   
+            <div className = "text-lg">Should be:<br></br> { sentence.fields.join(" ") } </div>   
+            <button className="btn" onClick = {handleNextPuzzle} > Next Puzzle </button>  
         </div>
     )
 }

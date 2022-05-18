@@ -4,7 +4,7 @@ import PuzzleWrong from './PuzzleWrong';
 import GameOver from './GameOver';
 import {getSentence} from '../lib/library';
 import { useSelector, useDispatch } from 'react-redux'
-import { gameOver, nextPuzzle, checkAnswer, tryAgain, unClick } from '../gameSlice'
+import { gameOver, nextPuzzle, checkAnswer, tryAgain, useAllCorrect } from '../gameSlice'
 
 function AnswerInput(props) {
     const [userInput, setUserInput] = useState(props.userAnswer);
@@ -18,13 +18,15 @@ function AnswerInput(props) {
     return <input className="text-center my-1 mx-1 rounded pl-1" type="text" value={userInput} onChange={handleInput} placeholder={props.headword} />
 }
 
+
+
 export default function GameSentence() {
     const gameSettings = useSelector(state => state.game.settings);
     const isGameOver = useSelector(state => state.game.isGameOver);
     const hasAnswered = useSelector(state => state.game.hasAnswered);
-    const allCorrect = useSelector(state => state.game.userAnswerIsCorrect);
+    const allCorrect = useAllCorrect();
+
     const sentence = useSelector(state => state.game.sentence);
-    const hasClicked = useSelector(state => state.game.hasClicked);
 
     const dispatch = useDispatch();
     
@@ -35,13 +37,12 @@ export default function GameSentence() {
     const [userAnswers, setUserAnswers] = useState(defaultAnswers);
 
     function updateAnswer(index, input) {
-        userAnswers[index] = input
-        setUserAnswers(userAnswers)
+        const newAnswers = [...userAnswers]
+        newAnswers[index] = input
+        setUserAnswers(newAnswers)
     }
 
     function handleCheck() {
-        //hasClicked = false;
-        dispatch(unClick());
         dispatch(checkAnswer({userAnswers}));
     }
 
