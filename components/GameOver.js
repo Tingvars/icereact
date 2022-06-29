@@ -1,57 +1,56 @@
-import React, { useState, useEffect } from 'react';
-import GameSentence from './GameSentence';
-import StartNewGame from './StartNewGame';
+import React, { useState, useEffect } from "react";
+import GameSentence from "./GameSentence";
+import StartNewGame from "./StartNewGame";
+import { useSelector, useDispatch } from "react-redux";
+import { resetGame, startGame } from "../gameSlice";
+import { atom, useAtom, useAtomValue } from "jotai";
+import { atomWithStorage } from "jotai/utils";
+import { numPuzzlesTodayAtom, wrongAnswerListAtom } from "../lib/atoms";
 
-export default function StartAgain(props) {
-    let wrongAnswerList = localStorage.getItem('wrongAnswerList');
-    let wrongAnswerArray = wrongAnswerList.split(",");
-    let duplicatesRemoved = [...new Set(wrongAnswerArray)];
-    if (typeof window !== 'undefined') {
-    localStorage.setItem("wrongAnswerList", duplicatesRemoved);}
-    let gameSettings = props.gameSettings;
-    const [hasAddedRightAnswersToTotal, sethasAddedRightAnswersToTotal] = useState(false);
-    const [hasClickedStartSameGame, setHasClickedStartSameGame] = useState(false);
-    const [hasClickedToGameSettings, setHasClickedToGameSettings] = useState(false);
+//Fix localStorage stuff, use redux storage? https://www.npmjs.com/package/redux-storage or Jotai? https://jotai.org/docs/guides/persistence - Thora
+//new slice, all setting and getting stuff should be in there as actions
 
-    useEffect(() => {
-        localStorage.setItem("numPuzzlesToday", parseInt([localStorage.getItem('numPuzzlesToday')]) + gameSettings.rightAnswers);
-    }, [])
+//THora TODO fix this screen
 
-    function StartSameGame() {
-        setHasClickedStartSameGame(true);
-    }
-    
-    function ToGameSettings() {
-        setHasClickedToGameSettings(true);
-    }
+export default function StartAgain() {
+  const [wrongAnswerList, setWrongAnswerList] = useAtom(wrongAnswerListAtom);
+  const userSettings = useSelector((state) => state.game.settings);
 
-    //TODO Thora look at this
-    if (hasClickedStartSameGame === true) {
-        gameSettings.turnCounter = 1;
-        gameSettings.questionCounter = 0;
-        gameSettings.rightAnswers = 0;
-        return <div>
-            < GameSentence gameSettings={gameSettings}/>
-        </div>
-    }
+  const dispatch = useDispatch();
 
-    if (hasClickedToGameSettings === true) {
-        return <div>
-            < StartNewGame />
-        </div>
-    }
+  const numPuzzlesToday = useAtomValue(numPuzzlesTodayAtom);
 
-    return ( 
-        <div className="text-center">
-            <div className = "text-2xl font-bold">Game Over</div>
-            <div> You got { gameSettings.rightAnswers }/{ gameSettings.gameTurns } right! </div>
-            <div>Wrong words entered today: {duplicatesRemoved}</div>
-            <div>Total solved correctly today: {localStorage.getItem('numPuzzlesToday')}</div>
-            <div>
-                <button className="btn mr-2" onClick={() => StartSameGame()}> Play Again </button> 
-                <button className="btn" onClick={() => ToGameSettings()}> Change Game Settings </button> 
-            </div>
-        </div>
-    )
+  function handleChangeGameSettings() {
+    dispatch(resetGame());
+  }
 
-    }
+  function handleRestartGame() {
+    const restartSettings = { ...userSettings };
+    const turnCount = restartSettings.gameTurns;
+    const useAdjectives = restartSettings.useAdj;
+    dispatch(resetGame());
+    dispatch(startGame({ turnCount, useAdjectives }));
+  }
+
+  return (
+    <div className="text-center">
+      <div className="text-2xl font-bold">Game Over</div>
+      <div>
+        {" "}
+        You got {userSettings.rightAnswers}/{userSettings.gameTurns} right!{" "}
+      </div>
+      <div>Wrong words entered today: {wrongAnswerList}</div>
+      <div>Total solved correctly today: {numPuzzlesToday}</div>
+      <div>
+        <button className="btn mr-2" onClick={handleRestartGame}>
+          {" "}
+          Play Again{" "}
+        </button>
+        <button className="btn" onClick={handleChangeGameSettings}>
+          {" "}
+          Change Game Settings{" "}
+        </button>
+      </div>
+    </div>
+  );
+}
